@@ -1,16 +1,130 @@
+/* --- Variables et Reset --- */
+:root {
+    --primary-color: #4a90e2;
+    --danger-color: #e74c3c;
+    --success-color: #2ecc71;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font-family: Arial;
-  max-width: 400px;
-  margin: 40px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* --- Conteneur des contrôles (Inputs et Filtres) --- */
+.controls {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input#task {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px; /* Évite le zoom auto sur iPhone */
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+    font-weight: bold;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#add { background-color: var(--primary-color); color: white; }
+#clear { background-color: var(--danger-color); color: white; }
+
+/* Groupement des filtres */
+.filter-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.filter-group button {
+    flex: 1;
+    font-size: 0.8rem;
+    background-color: #ddd;
+}
+
+/* --- Liste des tâches --- */
+#list {
+    width: 100%;
+    max-width: 500px;
+    list-style: none;
 }
 
 li {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
+    background: white;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+li span {
+    flex-grow: 1; /* Prend toute la place restante */
+    word-break: break-all;
 }
 
 .done {
-  text-decoration: line-through;
-  color: gray;
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Boutons d'action dans la liste */
+li button {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+}
+
+li button:nth-of-type(1) { background-color: var(--success-color); color: white; }
+li button:nth-of-type(2) { background-color: #eee; color: var(--danger-color); }
+
+/* --- Responsive (Tablettes et Mobiles) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    li {
+        flex-wrap: wrap; /* Les boutons passent en dessous si le texte est trop long */
+    }
+
+    li span {
+        width: 100%; /* Le texte prend toute la ligne */
+        margin-bottom: 8px;
+    }
 }

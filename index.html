@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>To-do</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <h1>To-do</h1>
 
-  <input id="task">
-  <button id="add">Ajouter</button>
-  <button id="clear">Tout supprimer</button>
-  <button onclick="setFilter('all')">Toutes</button>
-  <button onclick="setFilter('actif')">Actives</button>
-  <button onclick="setFilter('terminé')">Terminées</button>
+  <div class="controls">
+    <input id="task" placeholder="Ajouter une tâche...">
+    <button id="add">Ajouter</button>
+
+    <div class="filter-group">
+      <button onclick="setFilter('all')">Toutes</button>
+      <button onclick="setFilter('actif')">Actives</button>
+      <button onclick="setFilter('terminé')">Terminées</button>
+    </div>
+
+    <button id="clear">Tout supprimer</button>
+  </div>
 
   <ul id="list"></ul>
 
   <script src="todo.js" defer></script>
 </body>
+
 </html>
