@@ -1,24 +1,20 @@
-/* --- Variables et Reset --- */
 :root {
-    --primary-color: #4a90e2;
-    --danger-color: #e74c3c;
-    --success-color: #2ecc71;
-    --bg-color: #f4f7f6;
-    --text-color: #333;
+    --primary: #4a90e2;
+    --danger: #e74c3c;
+    --success: #2ecc71;
+    --bg: #f8f9fa;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    padding: 20px;
+    background-color: var(--bg);
+    padding: 20px 15px; /* Un peu d'espace sur les bords */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,105 +22,106 @@ body {
 
 h1 {
     margin-bottom: 20px;
-    color: var(--primary-color);
+    font-size: 2rem;
+    color: #333;
 }
 
-/* --- Conteneur des contrôles (Inputs et Filtres) --- */
+/* --- Conteneur principal --- */
 .controls {
     width: 100%;
-    max-width: 500px;
+    max-width: 500px; /* Ne dépasse pas 500px sur PC */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
 }
 
+/* --- Champs et Boutons --- */
 input#task {
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px; /* Évite le zoom auto sur iPhone */
     width: 100%;
+    padding: 15px; /* Plus grand pour le tactile */
+    font-size: 18px; /* Évite le zoom automatique sur iPhone */
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+}
+
+input#task:focus {
+    border-color: var(--primary);
 }
 
 button {
-    cursor: pointer;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    transition: opacity 0.2s;
+    padding: 15px;
+    font-size: 16px;
     font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-button:active {
-    transform: scale(0.98);
-}
+#add { background: var(--primary); color: white; }
+#clear { background: #ddd; color: var(--danger); }
 
-#add { background-color: var(--primary-color); color: white; }
-#clear { background-color: var(--danger-color); color: white; }
-
-/* Groupement des filtres */
+/* --- Groupe des Filtres --- */
 .filter-group {
     display: flex;
-    justify-content: space-between;
-    gap: 5px;
+    gap: 8px;
 }
 
 .filter-group button {
-    flex: 1;
-    font-size: 0.8rem;
-    background-color: #ddd;
+    flex: 1; /* Les 3 boutons prennent la même largeur */
+    padding: 10px 5px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #ddd;
 }
 
-/* --- Liste des tâches --- */
+/* --- La Liste --- */
 #list {
     width: 100%;
     max-width: 500px;
     list-style: none;
+    margin-top: 25px;
 }
 
 li {
     background: white;
+    padding: 15px;
     margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 li span {
-    flex-grow: 1; /* Prend toute la place restante */
-    word-break: break-all;
+    flex: 1;
+    font-size: 18px;
+    word-break: break-word;
 }
 
 .done {
     text-decoration: line-through;
-    color: #888;
+    color: #bbb;
 }
 
 /* Boutons d'action dans la liste */
 li button {
-    font-size: 0.75rem;
-    padding: 6px 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 8px;
 }
 
-li button:nth-of-type(1) { background-color: var(--success-color); color: white; }
-li button:nth-of-type(2) { background-color: #eee; color: var(--danger-color); }
+li button:nth-of-type(1) { background: #e8f5e9; color: var(--success); }
+li button:nth-of-type(2) { background: #ffebee; color: var(--danger); }
 
-/* --- Responsive (Tablettes et Mobiles) --- */
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
+/* --- Ajustement spécial pour très petits écrans --- */
+@media (max-width: 400px) {
     li {
-        flex-wrap: wrap; /* Les boutons passent en dessous si le texte est trop long */
+        flex-wrap: wrap; /* Si le texte est trop long, les boutons passent dessous */
     }
-
     li span {
-        width: 100%; /* Le texte prend toute la ligne */
-        margin-bottom: 8px;
+        width: 100%;
     }
 }
